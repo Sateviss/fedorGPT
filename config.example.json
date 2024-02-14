@@ -1,0 +1,19 @@
+{
+    "telegram":{
+        "app_id": 12345,
+        "api_hash": "12345abcd",
+        "session_file": "data/session_file"
+    },
+    "open_ai": {
+        "api_key": "12345abcd",
+        "text_model": "gpt-3.5-turbo",
+        "text_max_tokens": 300,
+        "vision_model": "gpt-4-vision-preview",
+        "vision_max_tokens": 300
+    },
+    "system": {
+        "users_file": "data/users.json",
+        "logs_file": "data/fedorGPT.log",
+        "chatdb_file": "data/chat.db"
+    }
+}
