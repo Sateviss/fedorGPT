@@ -148,9 +148,12 @@ def getChatGPT4ImageDesc(image : BytesIO):
         return ''
 
 def knownSession(sessionId):
-    con = sqlite3.connect(CONFIG["system"]["chatdb_file"])
-    count = con.execute(f'SELECT COUNT(id) FROM message_store WHERE session_id={sessionId}').fetchone()[0]
-    return count > 0
+    try:
+        con = sqlite3.connect(CONFIG["system"]["chatdb_file"])
+        count = con.execute(f'SELECT COUNT(id) FROM message_store WHERE session_id={sessionId}').fetchone()[0]
+        return count > 0
+    except:
+        return False
 
 
 TARGETED_INDIVIDUALS : dict = loadUsers()
@@ -413,7 +416,7 @@ async def fedorGPTEventHandler(event: events.newmessage.NewMessage.Event):
         await replyToMessage(message, threadId, mixins)
         return
 
-    if 'quotes' in triggers and event.message.reply_to is not None and event.message.reply_to.reply_to_peer_id != event.message.peer_id:
+    if 'quotes' in triggers and event.message.reply_to is not None and event.message.reply_to.reply_to_peer_id is not None:
         mixins = {}
         mixins.update(await getImageMixin(event.message))
         mixins.update(await getWebMixin(event.message))
