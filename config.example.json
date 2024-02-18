@@ -12,7 +12,7 @@
         "vision_max_tokens": 300
     },
     "system": {
-        "users_file": "data/users.json",
+        "personal_settings_file": "data/settings.json",
         "logs_file": "data/fedorGPT.log",
         "chatdb_file": "data/chat.db"
     }
