@@ -496,7 +496,7 @@ async def fedorGPTEventHandler(event: events.newmessage.NewMessage.Event):
         if original_message.sender_id != me.id:
             logging.info(f'{ID} Reply is not to me')
             return
-        if 'all_replies' not in triggers and original_message.message.startswith('🤖'):
+        if 'all_replies' not in triggers and not original_message.message.startswith('🤖'):
             logging.info(f'{ID} Reply is not from GPT and only gpt_replies trigger is active')
             return
         # Travel up the thread until the thread's origin or the start of a known session
